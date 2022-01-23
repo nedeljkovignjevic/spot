@@ -2,15 +2,15 @@ import os
 import torch
 import torch.utils.data
 
+from torch import optim
+
 
 class TrainerConfig:
 
-    def __init__(self, n_epochs, batch_size, criterion, optimizer, scheduler, checkpoint_path):
+    def __init__(self, n_epochs, batch_size, criterion, checkpoint_path):
         self.n_epochs = n_epochs
         self.batch_size = batch_size
         self.criterion = criterion
-        self.optimizer = optimizer
-        self.scheduler = scheduler
         self.checkpoint_path = checkpoint_path
 
 
@@ -27,12 +27,11 @@ class Trainer:
             self.device = torch.cuda.current_device()
             self.model = self.model.to(self.device)
 
-    def save_checkpoint(self, epoch, state_dict, optimizer_dict, scheduler_dict):
+    def save_checkpoint(self, epoch, state_dict, optimizer_dict):
         state = {
             'epoch': epoch,
             'state_dict': state_dict,
-            'optimizer_dict': optimizer_dict,
-            "scheduler_dict": scheduler_dict
+            'optimizer_dict': optimizer_dict
         }
 
         if not os.path.exists(self.config.checkpoint_path):
@@ -46,10 +45,11 @@ class Trainer:
         train_loader = torch.utils.data.DataLoader(train_data, batch_size=config.batch_size, shuffle=True)
         validation_loader = torch.utils.data.DataLoader(validation_data, batch_size=config.batch_size, shuffle=True)
 
-        n_epochs, optimizer, criterion, scheduler = config['n_epochs'], config['optimizer'], config['criterion'], config['scheduler']
+        n_epochs = config['n_epochs']
+        criterion = config['criterion']
+        optimizer = optim.Adam(model.parameters())
 
         for epoch in range(n_epochs):
-            scheduler.step()
 
             train_loss = 0
             n_train_losses = 0
@@ -82,4 +82,4 @@ class Trainer:
                     n_valid_losses += 1
 
             print(f'epoch: {epoch}, validation loss: {valid_loss / n_valid_losses}')
-            self.save_checkpoint(epoch, model.state_dict(), optimizer.state_dict(), scheduler.state_dict())
+            self.save_checkpoint(epoch, model.state_dict(), optimizer.state_dict())
