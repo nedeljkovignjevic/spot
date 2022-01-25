@@ -3,7 +3,7 @@ SPOT 71 is an open source driver assistance system for handmade toy car. \
 Model is predicting steering value [-1, 1] based on input image.
 
 ## Model
-Model is based on Nvidia CNN from 2016. -- https://arxiv.org/pdf/1604.07316.pdf \
+Neural network model is based on Nvidia CNN from 2016. -- https://arxiv.org/pdf/1604.07316.pdf \
 Input --> img 320x240x3 \
 Output --> steering value [-1, 1]
 
