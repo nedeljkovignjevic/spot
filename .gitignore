@@ -1,4 +1,6 @@
-env
+**/env
+**/data
+
 
 ### IntelliJ IDEA ###
 .idea
