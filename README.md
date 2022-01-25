@@ -1,10 +1,13 @@
 # SPOT 71
+SPOT 71 is an open source driver assistance system for handmade toy car.
+
+## Model
+
+
 
 # Resources
 ## https://arxiv.org/pdf/1604.07316.pdf
-- MSE
-- 10 FPS
-- 3@66x200
+
 
 # Model
 

@@ -1,6 +1,5 @@
 import cv2
 import torch
-import numpy as np
 from websocket import create_connection
 from model import NvidiaModel
 
@@ -53,4 +52,4 @@ def drive(cam_url: str):
 
 
 if __name__ == '__main__':
-    drive("http://192.168.4.3:9999/video")
+    drive("http://192.168.4.2:9999/video")
