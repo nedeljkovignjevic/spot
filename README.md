@@ -1,5 +1,5 @@
-# SPOT
-SPOT is an open source driver assistance system for handmade toy car.
+# spot
+spot is an open source driver assistance system for handmade toy car.
 
 ## Hardware
 - 4WD Smart Car Chassis
