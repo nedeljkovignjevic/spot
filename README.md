@@ -15,7 +15,13 @@ It takes an image and outputs how you should drive, in our case the model output
 
 Model starts with a block of 5 fully-convolutional layers that reduces down to a 1680-dimensional vector. \
 This block represents our vision model and it should extract all features from an image that are essential to driving. \
-The resulting 1680-dim feature vector then goes into a block of 4 fully connected layers that represent our policy model.
+The resulting 1680-dim feature vector then goes into a block of 4 fully connected layers that represent our policy model. \
+In total model has about 240 000 parameters.
+
+## Data
+Training data was collected by sampling video from mobile phone camera at 10 FPS because a higher sampling rate would include images that are highly similar, and thus not provide much additional useful information. \
+About 10 minutes of driving data was collected (~ 6000 frames, 90% is used for training and 10% for validation).
+
 
 ## Results
 Model has successfully learned to drive on a track he has never seen before, neither on the training dataset nor on the validation dataset.
